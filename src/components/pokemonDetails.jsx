@@ -1,15 +1,20 @@
 import axios from 'axios';
-import { useEffect, useState } from "react";
-import { useParams } from 'react-router-dom';
+import { useEffect, useState, useContext } from "react";
+import { useParams, useNavigate } from 'react-router-dom';
+import { GlobalContext } from '../contexts/globalState';
 
 const PokemonDetails = () => {
-
+    const {pokemons} = useContext(GlobalContext);
     const [pokemon, setPokemon] = useState({});
     const [isLoading, setIsLoading] = useState(true);
 
     const params = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
+        if(params.id < 0 || params.id >= pokemons.length){
+            navigate('/error');
+        }
         const fetchPokemon = async () => {
             const result = await axios(`http://pokemon.test.dormzi.com/pokemon/${params.id}`);
             setPokemon(result.data);
