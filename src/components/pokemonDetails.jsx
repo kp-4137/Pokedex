@@ -1,12 +1,18 @@
 import axios from 'axios';
 import { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate, Link } from 'react-router-dom';
+import { Button, Modal } from "react-bootstrap";
 import { GlobalContext } from '../contexts/globalState';
 
 const PokemonDetails = () => {
     const {pokemons} = useContext(GlobalContext);
     const [pokemon, setPokemon] = useState({});
     const [isLoading, setIsLoading] = useState(true);
+    const [show, setShow] = useState(false);
+
+    const toggleModal = () => {
+        setShow(!show);
+    };
 
     const params = useParams();
     const navigate = useNavigate();
@@ -25,6 +31,11 @@ const PokemonDetails = () => {
 
     return isLoading ? <h1>Pokemon Loading...</h1> : (
         <div className="container mt-5">
+            <Modal show={show} onHide={toggleModal} size="lg" className="bg-dark">
+                <Modal.Body className="d-flex justify-content-center overflow-hidden">
+                    <img src={pokemon.picture} alt={pokemon.ename} width="90%"/>
+                </Modal.Body>
+            </Modal>
             <div className="row">
                 <div className="col">
                     { params.id > 0 && <Link to={`/pokemon/${params.id - 1}`} className="btn btn-secondary">Previous</Link>}
@@ -35,7 +46,9 @@ const PokemonDetails = () => {
             </div>
             <div className="row">
                 <div className="pokemon-image">
-                    <img src={pokemon.picture} alt={pokemon.ename} className="mr-4"/>
+                    <Button onClick={toggleModal} className="my-3 bg-dark border-0">
+                        <img src={pokemon.picture} alt={pokemon.ename} className="mr-4"/>
+                    </Button>
                 </div>
                 <div className="pokemon-details d-flex flex-column">
                     <div>
