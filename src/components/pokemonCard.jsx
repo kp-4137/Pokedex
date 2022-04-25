@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom';
+import { Card } from 'react-bootstrap';
 
 const PokemonCard = ({pokemon}) => {
     return(
-        <div className="card">
-            <img className="card-img-top" src={pokemon.picture} alt={pokemon.name} />
-            <div className="card-body">
-                <h3 className="card-title">{pokemon.name}</h3>
+        <Card className="bg-dark text-white p-2">
+            <Card.Img src={pokemon.picture} alt={pokemon.name} />
+            <Card.Body>
+                <Card.Title>{pokemon.name}</Card.Title>
                 <Link to={`/pokemon/${pokemon.id}`} className="btn btn-warning">Info</Link>
-            </div>
-        </div>
+            </Card.Body>
+        </Card>
     );
 }
 
