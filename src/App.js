@@ -1,10 +1,10 @@
-import './App.css';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import Header from './components/header';
-import PokemonGrid from './components/pokemonGrid';
-import PokemonDetails from './components/pokemonDetails';
-import PageNotFound from './components/pageNotFound';
-import { GlobalProvider } from './contexts/globalState';
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./components/header";
+import PokemonGrid from "./components/pokemonGrid";
+import PokemonDetails from "./components/pokemonDetails";
+import PageNotFound from "./components/pageNotFound";
+import { GlobalProvider } from "./contexts/globalState";
 
 function App() {
   return (

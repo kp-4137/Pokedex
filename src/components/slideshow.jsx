@@ -1,4 +1,4 @@
-import { Carousel, Card, CardImg } from "react-bootstrap";
+import { Carousel, Card } from "react-bootstrap";
 import { useContext } from "react";
 import { GlobalContext } from "../contexts/globalState";
 
