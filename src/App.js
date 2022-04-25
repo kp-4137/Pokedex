@@ -1,28 +1,14 @@
 import './App.css';
-import axios from 'axios';
-import { useState, useEffect } from 'react';
 import Header from './components/header';
 import PokemonGrid from './components/pokemonGrid';
+import { GlobalProvider } from './contexts/globalState';
 
 function App() {
-  const [pokemons, setPokemons] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchPokemons = async () => {
-      const result = await axios('http://pokemon.test.dormzi.com/pokemon');
-      console.log(result.data[0]);
-      setPokemons(result.data);
-      setIsLoading(false);
-    };
-    fetchPokemons();
-  }, []);
-
   return (
-    <>
+    <GlobalProvider>
       <Header />
-      <PokemonGrid isLoading={isLoading} pokemons={pokemons}/>
-    </>
+      <PokemonGrid />
+    </GlobalProvider>
   );
 }
 

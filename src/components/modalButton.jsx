@@ -1,10 +1,29 @@
-// import PropTypes from 'prop-types';
+import { useState } from "react";
+import { Button, Modal } from "react-bootstrap";
+import Slideshow from "./slideshow";
 
-const ModalButton = ({id, onClick}) => {
+const ModalButton = () => {
+    const [show, setShow] = useState(false);
+
+    const toggleModal = () => {
+        setShow(!show);
+    };
+
     return(
-        <button className="btn btn-primary">
-            Slideshow
-        </button>
+        <>
+            <Button onClick={toggleModal}>Slideshow</Button>
+            <Modal show={show} onHide={toggleModal}>
+                <Modal.Header closeButton><h1>PokeShow</h1></Modal.Header>
+                <Modal.Body>
+                    <Slideshow />
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={toggleModal}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
     );
 }
 
